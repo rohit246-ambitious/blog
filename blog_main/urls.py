@@ -27,4 +27,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('category/',include('blogs.urls')),
     path('<slug:slug>/', BlogsView.blogs, name='blogs'),
+
+    #serch blog posts
+    path('blogs/search/', BlogsView.search, name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
