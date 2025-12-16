@@ -1,8 +1,9 @@
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from about.models import About
 from blogs.models import Blog, Category
+from .forms import resgisterForm
 
 def home(request):
     featured_posts = Blog.objects.filter(is_featured=True, status="Published").order_by('updated_at')
@@ -20,3 +21,14 @@ def home(request):
         'about': about
     }
     return render(request, 'home.html', context)
+
+def register(request):
+    if request.method == 'POST':
+        form = resgisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('register')
+    else:
+        form = resgisterForm()
+    context = {'form': form}
+    return render(request, 'register.html', context)
