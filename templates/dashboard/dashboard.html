@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to your Dashboard</h1>
+    <div class="row">
+        <!-- left sidebar -->
+        <div class="col-md-3">
+            <div class="nav flex-column nav-pills bg-light" role="tablist" aria-orientation="vertical">
+                <a class="nav-link text-dark active bg-warning" href="#">Dashboard</a>
+                <a class="nav-link text-dark" href="#">Categories</a>
+                <a class="nav-link text-dark" href="#">Posts</a>
+                <a class="nav-link text-dark" href="#">Logout</a>
+            </div>
+               
+        </div>
+        <!-- right side content -->
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col">
+                    <div class="card border-default mb-3">              
+                        <div class="card-header text-center text-uppercase font-weight-bold">All Categories</div>
+                        <div class="card-body text-center text-dark">
+                            <h5 class="card-title">{{ category_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-default mb-3">              
+                        <div class="card-header text-center text-uppercase font-weight-bold">All Posts</div>
+                        <div class="card-body text-center text-dark">
+                            <h5 class="card-title">{{ blogs_count }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
