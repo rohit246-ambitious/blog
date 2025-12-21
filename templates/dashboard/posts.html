@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+    <!-- left sidebar -->
+        <!-- include sidebar -->
+        {% include 'dashboard/sidebar.html' %}
+    
+        <!-- right side content -->
+        <div class="col-md-9">
+            <h2>All Posts</h2>
+            <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-right mb-2">Add New Post</a>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Status</th>
+                    <th>Featured</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <th scope="row">{{ post.id }}</th>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.category }}</td>
+                        <td>{{ post.auther }}</td>
+                        <td>{{ post.status }}</td>
+                        <td>{{ post.is_featured }}</td>
+                        <td>{{ post.created_at }}</td>
+                        <td>{{ post.updated_at }}</td>
+                        <td>
+                            {% comment %} <a href="{% url 'edit_category' category.id %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'delete_category' category.id %}" class="btn btn-sm btn-danger">Delete</a> {% endcomment %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
