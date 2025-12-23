@@ -35,8 +35,8 @@
                         <td>{{ post.created_at }}</td>
                         <td>{{ post.updated_at }}</td>
                         <td>
-                            {% comment %} <a href="{% url 'edit_category' category.id %}" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="{% url 'delete_category' category.id %}" class="btn btn-sm btn-danger">Delete</a> {% endcomment %}
+                            <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
