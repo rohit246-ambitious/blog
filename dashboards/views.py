@@ -2,9 +2,10 @@ from blogs.models import Category, Blog
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
-from .forms import CategoryForm, BlogPostForm
+from .forms import CategoryForm, BlogPostForm, AddUserForm
 from django.shortcuts import redirect
-from django.template.defaultfilters import slugify  
+from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User  
 
 @login_required(login_url='login')
 def dashboard(request):
@@ -92,3 +93,22 @@ def delete_post(request, pk):
     post = get_object_or_404(Blog, pk=pk)
     post.delete()
     return redirect('posts')
+
+@login_required(login_url='login')
+def users(request):
+    users = User.objects.all()
+    context = {'users': users}
+    return render(request, 'dashboard/users.html', context)
+
+@login_required(login_url='login')
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+        else:
+            print(form.errors)
+    form = AddUserForm()
+    context = {'form': form}
+    return render(request, 'dashboard/add_user.html', context)   
