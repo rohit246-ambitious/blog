@@ -132,3 +132,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 #crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
